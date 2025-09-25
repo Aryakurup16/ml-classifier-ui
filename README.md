@@ -1,3 +1,5 @@
+
+````markdown
 # ML Classifier UI
 
 ML Classifier is a React front end for a machine learning engine for quickly training image classification models in your browser. Models can be saved with a single command, and the resulting models reused to make image classification predictions.
@@ -21,13 +23,13 @@ An interactive [demo can be found here](https://thekevinscott.github.io/ml-class
 
 `ml-classifier-ui` can be installed via `yarn` or `npm`:
 
-```
+```bash
 yarn add ml-classifier-ui
-```
+````
 
 or
 
-```
+```bash
 npm install ml-classifier-ui
 ```
 
@@ -37,9 +39,9 @@ You can fork a live running version at [codesandbox.io](https://codesandbox.io/s
 
 ### Quick Start (Running locally)
 
-Start by instantiating a new MLClassifierUI.
+Start by instantiating a new MLClassifierUI:
 
-```
+```tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MLClassifierUI from 'ml-classifier-ui';
@@ -51,21 +53,21 @@ ReactDOM.render(<MLClassifierUI />, document.getElementById('root'));
 
 `MLClassifierUI` accepts a number of parameters:
 
-* **getMLClassifier** (`Function`) *Optional* - A callback that returns an instance of the underlying `ml-classifier` object. Call this if you want to programmatically call methods like `addData`, `train`, and `predict`. For more information on `ml-classifier`'s API methods [refer to it's documentation](https://github.com/thekevinscott/ml-classifier#api-documentation).
-* **methodParams** (`Object`) *Optional* - A set of parameters that will be passed in calls to `ml-classifier`'s methods. See below for more information.
-* **uploadFormat** (`string`) *Optional* - A string denoting what type of upload format to accept. Formats can be `flat` or `nested`. See below note for more information on that. If omitted, all formats are accepted.
-* **imageFormats** (`string[]`) *Optional* - An array of file extensions to accept. By default, all valid images are accepted. Images are transformed via the native `Image` tag in the browser, so if the browser can display the image, it'll be processed.
+* **getMLClassifier** (`Function`) *Optional* - A callback that returns an instance of the underlying `ml-classifier` object. Call this if you want to programmatically call methods like `addData`, `train`, and `predict`. For more information on `ml-classifier`'s API methods, [refer to its documentation](https://github.com/thekevinscott/ml-classifier#api-documentation).
+* **methodParams** (`Object`) *Optional* - A set of parameters that will be passed in calls to `ml-classifier`'s methods.
+* **uploadFormat** (`string`) *Optional* - A string denoting what type of upload format to accept. Formats can be `flat` or `nested`.
+* **imageFormats** (`string[]`) *Optional* - An array of file extensions to accept.
 * **showDownload** (`boolean`) *Optional* - A flag denoting whether to show a download button or not. Defaults to true.
 
 `MLClassifierUI` also accepts a number of callbacks that are called on the beginnings and ends of `ml-classifier` functions. [You can view a list of those here](https://github.com/thekevinscott/ml-classifier#parameters).
 
 ### `getMLClassifier`
 
-`getMLClassifier` returns an instance of `ml-classifier` for programmatic access to the underlying methods.
+`getMLClassifier` returns an instance of `ml-classifier` for programmatic access.
 
 #### Example
 
-```
+```tsx
 <MLClassifierUI
   getMLClassifier={(mlClassifier) => {
     mlClassifier.addData(...);
@@ -75,13 +77,9 @@ ReactDOM.render(<MLClassifierUI />, document.getElementById('root'));
 
 ### `methodParams`
 
-`methodParams` can be used to pass method-specific parameters to `ml-classifier`. The key will be used to determine which method to pass parameters to.
+Used to pass custom parameters to the underlying ML methods.
 
-Accepted keys are `train`, `evaluate`, and `save`. Other keys will be ignored.
-
-#### Example
-
-```
+```tsx
 <MLClassifierUI
   methodParams={{
     train: {
@@ -90,99 +88,76 @@ Accepted keys are `train`, `evaluate`, and `save`. Other keys will be ignored.
     evaluate: {
       batchSize: 32,
     },
-    save: {
-    },
+    save: {},
   }}
 />
 ```
 
 ### `uploadFormat`
 
-`uploadFormat` corresponds to how uploaded images should be organized. There are two options:
+Describes the file upload structure:
 
-#### `nested`
-Expects images to be organized in folders matching the label. Only the immediate parent folder's name will be used as the label. For example:
+#### `nested` (folder-based labels)
 
 ```
-- containing-folder/
+- images/
   - dogs/
-    - IMG-1.jpg
-    - IMG-2.jpg
-    - IMG-3.jpg
+    - dog1.jpg
   - cats/
-    - IMG-1.jpg
-    - IMG-2.jpg
-    - IMG-3.jpg
+    - cat1.jpg
 ```
 
-Will product an array of three `dogs` labels and three `cats` labels.
-
-Nested folders will be searched recursively, but only immediate parent folders' names will be used. If an invalidly nested structure is found an error will be thrown.
-
-#### `flat` (*currently in development*)
-Expects files' names to be the label. Nested folders will be searched recursively (if the browser supports it) to build a flat array of files.
+#### `flat` (filename-based labels)
 
 ```
-- folder/
+- images/
   - dog-1.jpg
-  - dog-2.jpg
-  - dog-3.jpg
   - cat-1.jpg
-  - cat-2.jpg
-  - cat-3.jpg
 ```
 
 #### Example
 
-```
-<MLClassifierUI
-  uploadFormat={"nested"}
-/>
+```tsx
+<MLClassifierUI uploadFormat="nested" />
 ```
 
-### `imageFormats` (*currently in development*)
+### `imageFormats` (*optional*)
 
-`imageFormats` denotes the list of acceptable image formats for upload. Any images not matching the list of acceptable formats will be ignored.
+Filter accepted image types.
 
-#### Example
-
-```
-<MLClassifierUI
-  imageFormats={[
-    'png',
-    'gif',
-  ]}
-/>
+```tsx
+<MLClassifierUI imageFormats={['png', 'jpg']} />
 ```
 
 ## Contributing
 
 Contributions are welcome!
 
-You can run the local example with:
+To run the local example:
 
-```
+```bash
 yarn watch
 ```
 
-`ml-classifier-ui` is written in Typescript and React.
+Written in TypeScript and React.
 
 ### Tests
 
-Tests are a work in progress. Currently, the test suite only consists of unit tests. Pull requests for additional tests are welcome!
+To run tests:
 
-Run tests with:
-
-```
+```bash
 yarn test
 ```
 
-## Author
+## Maintainer
 
-* [Kevin Scott](https://thekevinscott.com)
+**Arya Kurup**
+
+> This fork is maintained and customized by Arya Kurup.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-![](https://ga-beacon.appspot.com/UA-112845439-4/ml-classifier-ui/readme)
+```
+
