@@ -1,0 +1,37 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
+  "jsEnable": false,
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts"
+    ]
+  },
+  "rules": {
+    "no-var-requires": false,
+    "prefer-for-of": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "no-debugger": false,
+    "no-console": false
+  },
+  "jsRules": {
+    "no-conditional-assignment": false,
+    "no-bitwise": false,
+    "no-duplicate-variable": false,
+    "no-string-literal": false,
+    "no-shadowed-variable": false,
+    "one-variable-per-declaration": false,
+    "variable-name": false,
+    "curly": false,
+    "prefer-for-of": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "no-debugger": false,
+    "no-console": false
+  }
+}
