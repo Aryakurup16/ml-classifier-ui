@@ -10,12 +10,6 @@ This package is the UI front end for [`ml-classifier`](https://github.com/thekev
 
 A walkthrough of the code can be found in the article [Image Classification in the Browser with Javascript](https://thekevinscott.com/image-classification-with-javascript/).
 
-## Demo
-
-An interactive [demo can be found here](https://thekevinscott.github.io/ml-classifier-ui/).
-
-![Demo](https://github.com/thekevinscott/ml-classifier-ui/raw/master/example/public/example.gif)
-*Screenshot of demo*
 
 ## Getting Started
 
